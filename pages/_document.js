@@ -1,15 +1,17 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { serializeEsiLayoutServiceData } from "@uniformdev/esi-jss-ssr";
+import { getBoolEnv } from '@uniformdev/common';
+
+const esiEnabled = getBoolEnv(process.env, 'UNIFORM_OPTIONS_ESI', false);
 
 class MyDocument extends Document {
-  render() {
-    const { UNIFORM_OPTIONS_ESI } = process.env || {};
+  render() {    
     return (
       <Html>
         <Head />
         <body>
           <Main />
-          {UNIFORM_OPTIONS_ESI === "true" ? <EsiNextScript /> : <NextScript />}
+          {esiEnabled ? <EsiNextScript /> : <NextScript />}
         </body>
       </Html>
     );
