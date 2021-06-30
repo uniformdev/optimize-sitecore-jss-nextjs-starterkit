@@ -1,0 +1,49 @@
+{
+  "name": "@uniformdev/optimize-uniform-sitecore-jss-nextjs-starterkit",
+  "version": "5.0.210625-1",
+  "private": true,
+  "config": {
+    "appName": "uniform-sitecore-jss-kit",
+    "rootPlaceholders": [
+      "uniform-jss-kit-content"
+    ],
+    "sitecoreConfigPath": "/App_Config/Include/zzz",
+    "language": "en",
+    "appLanguages": [
+      "en"
+    ]
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development npm run start-server",
+    "start": "cross-env-shell \"npm run build && npm run start-server\"",
+    "export": "cross-env-shell NODE_ENV=production UNIFORM_BUILD_MODE=export UNIFORM_OPTIONS_ESI=1 \"npm run build && next export\"",
+    "build": "next build",
+    "start-server": "node uniform.server.js"
+  },
+  "dependencies": {
+    "@sitecore-jss/sitecore-jss-react": "16.0.0",
+    "@uniformdev/common": "5.0.210625-1",
+    "@uniformdev/esi-jss-react": "5.0.210625-1",
+    "@uniformdev/next": "5.0.210625-1",
+    "@uniformdev/next-jss": "5.0.210625-1",
+    "@uniformdev/next-jss-server": "5.0.210625-1",
+    "@uniformdev/personalize-react": "5.0.210625-1",
+    "@uniformdev/publishing-all": "5.0.210625-1",
+    "@uniformdev/tracking-react": "5.0.210625-1",
+    "@uniformdev/esi-jss-ssr": "5.0.210625-1",
+    "dotenv": "^8.2.0",
+    "i18next": "~19.3.2",
+    "react-i18next": "~11.3.3",
+    "next": "10.0.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/register": "^7.5.5",
+    "@babel/runtime": "^7.13.10",
+    "@sitecore-jss/sitecore-jss-cli": "16.0.0",
+    "@sitecore-jss/sitecore-jss-dev-tools": "16.0.0",
+    "@sitecore-jss/sitecore-jss-manifest": "16.0.0",
+    "cross-env": "^5.2.1"
+  }
+}
