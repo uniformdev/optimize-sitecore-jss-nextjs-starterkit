@@ -28,7 +28,7 @@ const SitecoreRoute = ({ layoutData, assetPrefix = '' }) => {
             contextData={sitecoreContext}
             personalizationMode="jss-esi"
             sitecoreApiKey="EEFE326B-AFF1-4154-9AE8-2BEB85D4B8CB"
-            sitecoreSiteName="JssSite"
+            sitecoreSiteName="uniform-jss-kit"
         >
             <StaticAssetContextProvider assetPrefix={assetPrefix}>
                 <Head>
