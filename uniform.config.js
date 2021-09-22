@@ -7,6 +7,8 @@ const dotenv = require('dotenv');
 const defaults = {
   UNIFORM_API_SITENAME: 'uniform-jss-kit',
   UNIFORM_PUBLISH_TARGET: 'fake',
+  UNIFORM_SSR_ENGINE: 'nextjs',
+  UNIFORM_API_KEY: 'eefe326b-aff1-4154-9ae8-2beb85d4b8cb',
   UNIFORM_MODE: 'mixed'
 };
 
@@ -20,6 +22,10 @@ function processDefault(key, fallback) {
 module.exports = function () {
   dotenv.config();
   Object.keys(defaults).forEach((k) => processDefault(k, defaults[k]));
+
+  if (!process.env['UNIFORM_API_TOKEN']) {
+    throw new Error('UNIFORM_API_TOKEN is absent in .env file. It must be valid URL pointing back to Sitecore CM instance.');
+  }
 
   if (!process.env['UNIFORM_API_URL']) {
     throw new Error('UNIFORM_API_URL is absent in .env file. It must be valid URL pointing back to Sitecore CM instance.');
