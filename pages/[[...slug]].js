@@ -7,41 +7,25 @@ import {
     StaticAssetContextProvider,
 } from '@uniformdev/next-jss';
 import componentFactory from '../src/componentFactory';
-import { useSitecoreTracker } from '@uniformdev/tracking-react';
-import { SitecorePersonalizationContextProvider } from '@uniformdev/personalize-react';
-import { EsiPlaceholder } from '@uniformdev/esi-jss-react';
-import { getBoolEnv } from '@uniformdev/common';
+import * as uniformdev from '@uniformdev/optimize-js';
 
-const esiEnabled = getBoolEnv(process.env, 'UNIFORM_OPTIONS_ESI', false);
+if (typeof window !== 'undefined') {
+  window.uniformdev = uniformdev;
+}
 
 const SitecoreRoute = ({ layoutData, assetPrefix = '' }) => {
     const route = layoutData?.sitecore?.route;
-
-    const sitecoreContext = layoutData?.sitecore?.context;
-    
-    useSitecoreTracker(sitecoreContext, {
-        type: 'jss',
-    });
-
     return (
-        <SitecorePersonalizationContextProvider
-            contextData={sitecoreContext}
-            personalizationMode="jss-esi"
-            sitecoreApiKey="eefe326b-aff1-4154-9ae8-2beb85d4b8cb"
-            sitecoreSiteName="uniform-jss-kit"
-        >
-            <StaticAssetContextProvider assetPrefix={assetPrefix}>
-                <Head>
-                    <title>{route?.fields?.pageTitle?.value || 'Page'}</title>
-                    <link rel="shortcut icon" href="/favicon.ico" />
-                </Head>
+        <StaticAssetContextProvider assetPrefix={assetPrefix}>
+            <Head>
+                <title>{route?.fields?.pageTitle?.value || 'Page'}</title>
+                <link rel="shortcut icon" href="/favicon.ico" />
+            </Head>
 
-                <SitecoreContext componentFactory={componentFactory} layoutData={layoutData}>
-                    {esiEnabled && <EsiPlaceholder rendering={route} />}
-                    <MainLayout route={route} />
-                </SitecoreContext>
-            </StaticAssetContextProvider>
-        </SitecorePersonalizationContextProvider>
+            <SitecoreContext componentFactory={componentFactory} layoutData={layoutData}>
+                <MainLayout route={route} />
+            </SitecoreContext>
+        </StaticAssetContextProvider>
     );
 };
 

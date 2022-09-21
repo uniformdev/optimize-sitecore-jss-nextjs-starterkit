@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "version": "1.0.0",
+  "name": "@uniformdev/cloudflare-worker",
+  "description": "A template for kick starting a Cloudflare Workers project",
+  "dependencies": {
+    "@cloudflare/kv-asset-handler": "=0.1.3",
+    "@uniformdev/esi-edge-cloudflare": "7.1.220915-1"
+  }
+}
