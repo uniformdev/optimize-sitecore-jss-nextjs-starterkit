@@ -1,6 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { serializeEsiLayoutServiceData } from '@uniformdev/esi-jss-ssr';
 import { getBoolEnv } from '@uniformdev/common';
+import { UniformDebug } from '@uniformdev/next';
 
 const esiEnabled = getBoolEnv(process.env, 'UNIFORM_OPTIONS_ESI', false);
 if (esiEnabled) {
@@ -17,6 +18,7 @@ class MyDocument extends Document {
             <Html>
                 <Head />
                 <body>
+                    <UniformDebug />
                     <Main />
                     <NextScript />
                 </body>
